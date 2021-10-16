@@ -63,6 +63,13 @@ void pinIn() {
     }
 }
 
+void conclusion() { 
+    cout << "\nThank you for creating an account with Putnam air! We look forward to flying with you soon!"; 
+    cout << "To see your information, type HELP below.\n";
+    cout << "To create a new account, type NEW below.\n";
+    cout << "To exit, type EXIT below\n"; 
+}
+
 int main() { 
     introduction(); 
     nameIn(); 
@@ -73,4 +80,5 @@ int main() {
     check_Palindrome();
 
     pinIn(); 
+    conclusion(); 
 }
