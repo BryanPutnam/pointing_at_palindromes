@@ -2,15 +2,15 @@
 using namespace std; 
 
 void introduction() { 
-    cout << "Welcome to Putnam Air! We noticed that you do not have an account set up with our airline. \n"
+    cout << "\nWelcome to Putnam Air! We noticed that you do not have an account set up with our airline. \n"
     "If you follow the steps below and fill in your government name as well as a new password and pin number, we can get you all set up! \n";
 }
 
 void nameIn() { 
-    cout << "Please input the fist name you see on your government ID, below. \n"; 
+    cout << "\nPlease input your first name as you see it on your government ID, below. \n"; 
     string name; 
     cin >> name; 
-    cout << "Welcome to Putnam Air, " + name + "!\n"; 
+    cout << "\nWelcome to Putnam Air, " + name + "!\n"; 
 }
 
 void birthdayIn() { 
@@ -18,35 +18,47 @@ void birthdayIn() {
     string bday; 
     cin >> bday; 
     if (bday.length() == 10) { 
-        cout << "Thank you!\n"; 
+        cout << "\nThank you!\n"; 
     }
     else { 
         birthdayIn(); 
     }
 }
 
-void passwordIn() { 
-    cout << "Please create a new password for your account. Your password MUST be a palindrom to work with our system.\n"; 
-    string password; 
-    cin >> password; 
-    if (password == "palindrome") { //obvously "palindrome" will not stay there
-        cout << "Your new password is: " + password + ".\n";
+void check_Palindrome() { 
+    char *password = new char[1]; 
+    cin >> password;
+    char *forwards; 
+    char *backwards;
+    int length = strlen(password); 
+    forwards = password; 
+    backwards = forwards + length - 1; 
+
+    for (forwards = password; forwards <= backwards;) { 
+        if (*backwards == *forwards) { 
+            backwards --; 
+            forwards ++; 
+        } else 
+        break; 
+    } 
+    if (forwards > backwards) { 
+        cout << "New password created.\n"; 
     }
-    else { 
-        cout << "Your password MUST be a palindrome\n"; 
-        passwordIn(); 
-    }
+    else {
+        cout << "Invalid password: Please make sure your password is a palindrome.\n"; 
+        check_Palindrome();
+    } 
 }
 
 void pinIn() {
-    cout << "Please make a 4 character pin number for your new account. \n";
+    cout << "\nPlease make a 4 character pin number for your new account. \n";
     string pin; 
     cin >> pin;
     if (pin.length() == 4) {
         cout << "The pin for your new account is: " + pin; 
     }
     else {
-        cout << "Please make sure your pin is no more or no less than 4 charecters long.\n"; 
+        cout << "Invalid Pin: Your pin MUST be no more or no less than 4 charecters long.\n"; 
         pinIn();
     }
 }
@@ -55,6 +67,10 @@ int main() {
     introduction(); 
     nameIn(); 
     birthdayIn(); 
-    passwordIn(); 
+
+    cout << "\nPlease create a new password for your account. Your password MUST be a palindrom to work with our system.\n"; 
+    cout << "Type your new password below.\n"; 
+    check_Palindrome();
+
     pinIn(); 
 }
