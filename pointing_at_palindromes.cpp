@@ -26,6 +26,8 @@ void birthdayIn() {
 }
 
 void check_Palindrome() { 
+    cout << "\nPlease create a new password for your account. Your password MUST be a palindrom to work with our system.\n"; 
+    cout << "Type your new password below.\n"; 
     char *password = new char[1]; 
     cin >> password;
     char *forwards; 
@@ -55,7 +57,7 @@ void pinIn() {
     string pin; 
     cin >> pin;
     if (pin.length() == 4) {
-        cout << "The pin for your new account is: " + pin; 
+        cout << "The pin for your new account is: " + pin + "\n"; 
     }
     else {
         cout << "Invalid Pin: Your pin MUST be no more or no less than 4 charecters long.\n"; 
@@ -64,21 +66,38 @@ void pinIn() {
 }
 
 void conclusion() { 
-    cout << "\nThank you for creating an account with Putnam air! We look forward to flying with you soon!"; 
-    cout << "To see your information, type HELP below.\n";
+    cout << "\nThank you for creating an account with Putnam air! We look forward to flying with you soon!\n"; 
     cout << "To create a new account, type NEW below.\n";
     cout << "To exit, type EXIT below\n"; 
+}
+
+int newAccount() { 
+    string answer; 
+    cin >> answer; 
+    if (answer == "NEW") { 
+        return 1; 
+    }
+    else if (answer == "EXIT") { 
+        cout << "We look forward to flying with you soon!";
+        return 0; 
+    }
+    else { 
+        cout << "Invalid input. Try NEW or EXIT.\n";
+        newAccount(); 
+        return 0; 
+    }
 }
 
 int main() { 
     introduction(); 
     nameIn(); 
     birthdayIn(); 
-
-    cout << "\nPlease create a new password for your account. Your password MUST be a palindrom to work with our system.\n"; 
-    cout << "Type your new password below.\n"; 
     check_Palindrome();
-
     pinIn(); 
     conclusion(); 
+    // newAccount(); 
+
+    if (newAccount() == 1) {
+        main(); 
+    }
 }
