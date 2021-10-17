@@ -49,7 +49,7 @@ void birthdayIn() {
     string bday; 
     cin >> bday; 
     if (bday.length() == 10) { 
-        cout << "\nThank you!\n"; 
+        cout << "\nThank you! Be looking for an email on " << bday << " for promotional deals or rewards from Putnam air.\n";  
     }
     else { 
         birthdayIn(); 
@@ -79,11 +79,11 @@ void check_Palindrome() {
         break; 
     } 
     if (forwards > backwards) { 
-        cout << "\nYour password is a palindrome!\n"; 
+        cout << "\nYour password, " << password <<  ",is a palindrome!\n"; 
         cout << "Password memory address: " << &password << "\n";
     }
     else {
-        cout << "Invalid password: Please make sure your password is a palindrome.\n"; 
+        cout << "Invalid password: " << password << ". Please make sure your password is a palindrome.\n"; 
         check_Palindrome();
     } 
 }
